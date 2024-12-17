@@ -1,10 +1,6 @@
 import React from "react";
 import type { NotificationProvider } from "@refinedev/core";
-import {
-  showNotification,
-  updateNotification,
-  hideNotification,
-} from "@mantine/notifications";
+import { notifications } from "@mantine/notifications";
 import { ActionIcon, Box, Group, Text } from "@mantine/core";
 import { IconCheck, IconRotate2, IconX } from "@tabler/icons-react";
 
@@ -46,11 +42,11 @@ export const useNotificationProvider = (): NotificationProvider => {
     }) => {
       if (type === "progress") {
         if (isNotificationActive(key)) {
-          updateNotification({
+          notifications.update({
             id: key!,
             message: (
-              <Group position="apart" noWrap>
-                <Group spacing="xs" position="center">
+              <Group justify="apart" wrap="nowrap">
+                <Group gap="xs" justify="center">
                   <RingCountdown undoableTimeout={undoableTimeout ?? 0} />
                   <Box>
                     <Text>{message}</Text>
@@ -63,7 +59,7 @@ export const useNotificationProvider = (): NotificationProvider => {
                     cancelMutation?.();
                     if (key) {
                       removeNotification(key);
-                      hideNotification(key);
+                      notifications.hide(key);
                     }
                   }}
                 >
@@ -79,16 +75,16 @@ export const useNotificationProvider = (): NotificationProvider => {
                 "&::before": { display: "none" },
               },
             },
-            disallowClose: true,
+            withCloseButton: false,
             autoClose: false,
           });
         } else {
           addNotification(key);
-          showNotification({
+          notifications.show({
             id: key,
             message: (
-              <Group position="apart" noWrap>
-                <Group spacing="xs" position="center">
+              <Group justify="apart" wrap="nowrap">
+                <Group gap="xs" justify="center">
                   <RingCountdown undoableTimeout={undoableTimeout ?? 0} />
                   <Box>
                     <Text>{message}</Text>
@@ -101,7 +97,7 @@ export const useNotificationProvider = (): NotificationProvider => {
                     cancelMutation?.();
                     if (key) {
                       removeNotification(key);
-                      hideNotification(key);
+                      notifications.hide(key);
                     }
                   }}
                 >
@@ -118,13 +114,13 @@ export const useNotificationProvider = (): NotificationProvider => {
                 "&::before": { display: "none" },
               },
             },
-            disallowClose: true,
+            withCloseButton: false,
             autoClose: false,
           });
         }
       } else {
         if (isNotificationActive(key)) {
-          updateNotification({
+          notifications.update({
             id: key!,
             color: type === "success" ? "primary" : "red",
             icon:
@@ -139,7 +135,7 @@ export const useNotificationProvider = (): NotificationProvider => {
           });
         } else {
           addNotification(key);
-          showNotification({
+          notifications.show({
             id: key!,
             color: type === "success" ? "primary" : "red",
             icon:
@@ -160,7 +156,7 @@ export const useNotificationProvider = (): NotificationProvider => {
     },
     close: (key) => {
       removeNotification(key);
-      hideNotification(key);
+      notifications.hide(key);
     },
   };
 

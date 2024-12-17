@@ -4,7 +4,13 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Anchor, Button } from "@mantine/core";
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Anchor,
+  Button,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -60,19 +66,21 @@ export const CreateButton: React.FC<CreateButtonProps> = ({
           color="primary"
           {...(variant
             ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
+                variant: mapButtonVariantToActionIconVariant(
+                  variant as ButtonVariant,
+                ),
               }
             : { variant: "filled" })}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}
-          {...commonProps}
+          {...(commonProps as ActionIconProps)}
         >
           <IconSquarePlus size={18} {...svgIconProps} />
         </ActionIcon>
       ) : (
         <Button
           disabled={isDisabled}
-          leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+          leftSection={<IconSquarePlus size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.CreateButton}
           className={RefineButtonClassNames.CreateButton}

@@ -19,7 +19,10 @@ import {
   flattenObjectKeys,
 } from "@refinedev/core";
 
-type FormVariableType<TVariables, TTransformed> = ReturnType<
+type FormVariableType<
+  TVariables extends Record<string, unknown>,
+  TTransformed,
+> = ReturnType<
   NonNullable<
     UseFormInput<
       TVariables,
@@ -31,7 +34,7 @@ type FormVariableType<TVariables, TTransformed> = ReturnType<
 export type UseFormReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, unknown> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,
@@ -57,7 +60,7 @@ export type UseFormReturnType<
 export type UseFormProps<
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, unknown> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,
@@ -85,7 +88,7 @@ export type UseFormProps<
 export const useForm = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, unknown> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,

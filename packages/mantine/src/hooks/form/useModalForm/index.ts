@@ -21,7 +21,7 @@ import React from "react";
 export type UseModalFormReturnType<
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, unknown> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,
@@ -56,7 +56,7 @@ export type UseModalFormReturnType<
 export type UseModalFormProps<
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, unknown> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,
@@ -80,7 +80,7 @@ export type UseModalFormProps<
 export const useModalForm = <
   TQueryFnData extends BaseRecord = BaseRecord,
   TError extends HttpError = HttpError,
-  TVariables = Record<string, unknown>,
+  TVariables extends Record<string, unknown> = Record<string, unknown>,
   TTransformed = TVariables,
   TData extends BaseRecord = TQueryFnData,
   TResponse extends BaseRecord = TData,

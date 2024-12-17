@@ -1,4 +1,4 @@
-import type { ReactChild, ReactNode } from "react";
+import type { ReactNode } from "react";
 import type {
   AnchorProps,
   ChipProps,
@@ -18,7 +18,7 @@ import type {
 } from "@refinedev/ui-types";
 import type { IconProps } from "@tabler/icons-react";
 import type { ConfigType } from "dayjs";
-import type { ReactMarkdownOptions } from "react-markdown";
+import type { Options } from "react-markdown";
 
 export type BooleanFieldProps = RefineFieldBooleanProps<
   unknown,
@@ -34,10 +34,10 @@ export type FileFieldProps = RefineFieldFileProps<TextProps>;
 
 export type MarkdownFieldProps = RefineFieldMarkdownProps<
   string | undefined,
-  Partial<ReactMarkdownOptions>
+  Partial<Options>
 >;
 
-export type NumberFieldProps = RefineFieldNumberProps<ReactChild, TextProps>;
+export type NumberFieldProps = RefineFieldNumberProps<ReactNode, TextProps>;
 
 export type TagFieldProps = RefineFieldTagProps<
   ReactNode,

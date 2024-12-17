@@ -1,4 +1,8 @@
-import type { MantineTheme, MantineThemeOverride } from "@mantine/core";
+import {
+  Table,
+  type MantineTheme,
+  type MantineThemeOverride,
+} from "@mantine/core";
 
 const commonThemeProperties: Partial<MantineThemeOverride> = {
   fontFamily: [
@@ -47,38 +51,33 @@ const commonThemeProperties: Partial<MantineThemeOverride> = {
     ].join(","),
   },
   components: {
-    Table: {
-      styles: (theme) =>
-        theme.colorScheme === "light"
-          ? {
-              root: {
-                "thead>tr>th": {
-                  backgroundColor: "#fafafa",
-                  padding: "16px 4px",
-                },
-                "thead>tr>th:first-of-type": {
-                  borderTopLeftRadius: theme.defaultRadius,
-                },
-                "thead>tr>th:last-of-type": {
-                  borderTopRightRadius: theme.defaultRadius,
-                },
-                "tbody>tr>td": {
-                  borderBottom: "1px solid #f0f0f0",
-                },
-              },
-            }
-          : { root: {} },
-    },
+    Table: Table.extend({
+      styles: (theme) => {
+        return {
+          th: {
+            backgroundColor: "#fafafa",
+            padding: "16px 4px",
+            "&:first-of-type": {
+              borderTopLeftRadius: theme.defaultRadius,
+            },
+            "&::last-of-type": {
+              borderTopRightRadius: theme.defaultRadius,
+            },
+          },
+          td: {
+            borderBottom: "1px solid #f0f0f0",
+          },
+        };
+      },
+    }),
   },
 };
 
 export const LightTheme: Partial<MantineThemeOverride> = {
-  colorScheme: "light",
   ...commonThemeProperties,
 };
 
 export const DarkTheme: Partial<MantineThemeOverride> = {
-  colorScheme: "dark",
   ...commonThemeProperties,
 };
 
@@ -190,10 +189,7 @@ export const RefineThemes = Object.keys(refineColors).reduce((acc, key) => {
     [themeName]: {
       globalStyles: (theme: MantineTheme) => ({
         body: {
-          backgroundColor:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[8]
-              : theme.colors.gray[0],
+          backgroundColor: theme.colors.gray[0],
         },
       }),
 

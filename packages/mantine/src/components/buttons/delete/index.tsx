@@ -4,7 +4,15 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { Group, Text, Button, Popover, ActionIcon } from "@mantine/core";
+import {
+  Group,
+  Text,
+  Button,
+  Popover,
+  ActionIcon,
+  type ActionIconProps,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconTrash } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -88,10 +96,12 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             className={RefineButtonClassNames.DeleteButton}
             {...(variant
               ? {
-                  variant: mapButtonVariantToActionIconVariant(variant),
+                  variant: mapButtonVariantToActionIconVariant(
+                    variant as ButtonVariant,
+                  ),
                 }
               : { variant: "outline" })}
-            {...commonProps}
+            {...(commonProps as ActionIconProps)}
           >
             <IconTrash size={18} {...svgIconProps} />
           </ActionIcon>
@@ -103,7 +113,7 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
             disabled={loading || isDisabled}
             loading={loading}
             title={title}
-            leftIcon={<IconTrash size={18} {...svgIconProps} />}
+            leftSection={<IconTrash size={18} {...svgIconProps} />}
             data-testid={RefineButtonTestIds.DeleteButton}
             className={RefineButtonClassNames.DeleteButton}
             {...rest}
@@ -113,10 +123,10 @@ export const DeleteButton: React.FC<DeleteButtonProps> = ({
         )}
       </Popover.Target>
       <Popover.Dropdown py="xs">
-        <Text size="sm" weight="bold">
+        <Text size="sm" fw="bold">
           {confirmTitle ?? defaultConfirmTitle}
         </Text>
-        <Group position="center" noWrap spacing="xs" mt="xs">
+        <Group justify="center" wrap="nowrap" align="xs" mt="xs">
           <Button onClick={() => setOpened(false)} variant="default" size="xs">
             {confirmCancelText ?? defaultCancelLabel}
           </Button>

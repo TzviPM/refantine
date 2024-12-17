@@ -5,10 +5,10 @@ import {
   pickNotDeprecated,
 } from "@refinedev/core";
 import {
+  AppShell,
   Avatar,
   Flex,
-  Header as MantineHeader,
-  type Sx,
+  type MantineStyleProp,
   Title,
   useMantineTheme,
 } from "@mantine/core";
@@ -27,10 +27,9 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
   });
 
-  const borderColor =
-    theme.colorScheme === "dark" ? theme.colors.dark[6] : theme.colors.gray[2];
+  const borderColor = theme.colors.gray[2];
 
-  let stickyStyles: Sx = {};
+  let stickyStyles: MantineStyleProp = {};
   if (pickNotDeprecated(sticky, isSticky)) {
     stickyStyles = {
       position: "sticky",
@@ -40,12 +39,12 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
   }
 
   return (
-    <MantineHeader
+    <AppShell.Header
       zIndex={199}
-      height={64}
+      h={64}
       py={6}
       px="sm"
-      sx={{
+      style={{
         borderBottom: `1px solid ${borderColor}`,
         ...stickyStyles,
       }}
@@ -53,7 +52,7 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
       <Flex
         align="center"
         justify="space-between"
-        sx={{
+        style={{
           height: "100%",
         }}
       >
@@ -69,6 +68,6 @@ export const ThemedHeaderV2: React.FC<RefineThemedLayoutV2HeaderProps> = ({
           )}
         </Flex>
       </Flex>
-    </MantineHeader>
+    </AppShell.Header>
   );
 };

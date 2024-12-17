@@ -4,7 +4,12 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Button } from "@mantine/core";
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Button,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconFileImport } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -35,7 +40,9 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
         <ActionIcon
           {...(variant
             ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
+                variant: mapButtonVariantToActionIconVariant(
+                  variant as ButtonVariant,
+                ),
               }
             : { variant: "default" })}
           aria-label={label}
@@ -43,7 +50,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
           loading={loading}
           data-testid={RefineButtonTestIds.ImportButton}
           className={RefineButtonClassNames.ImportButton}
-          {...commonProps}
+          {...(commonProps as ActionIconProps)}
         >
           <IconFileImport size={18} {...svgIconProps} />
         </ActionIcon>
@@ -51,7 +58,7 @@ export const ImportButton: React.FC<ImportButtonProps> = ({
         <Button
           variant="default"
           component="span"
-          leftIcon={<IconFileImport size={18} {...svgIconProps} />}
+          leftSection={<IconFileImport size={18} {...svgIconProps} />}
           loading={loading}
           data-testid={RefineButtonTestIds.ImportButton}
           className={RefineButtonClassNames.ImportButton}

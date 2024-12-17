@@ -4,7 +4,13 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Anchor, Button } from "@mantine/core";
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Anchor,
+  Button,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconPencil } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -68,10 +74,12 @@ export const EditButton: React.FC<EditButtonProps> = ({
           className={RefineButtonClassNames.EditButton}
           {...(variant
             ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
+                variant: mapButtonVariantToActionIconVariant(
+                  variant as ButtonVariant,
+                ),
               }
             : { variant: "default" })}
-          {...commonProps}
+          {...(commonProps as ActionIconProps)}
         >
           <IconPencil size={18} {...svgIconProps} />
         </ActionIcon>
@@ -79,7 +87,7 @@ export const EditButton: React.FC<EditButtonProps> = ({
         <Button
           variant="default"
           disabled={isDisabled}
-          leftIcon={<IconPencil size={18} {...svgIconProps} />}
+          leftSection={<IconPencil size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.EditButton}
           className={RefineButtonClassNames.EditButton}

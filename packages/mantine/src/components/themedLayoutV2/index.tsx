@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mantine/core";
+import { Box, Flex } from "@mantine/core";
 
 import type { RefineThemedLayoutV2Props } from "./types";
 import { ThemedSiderV2 as DefaultSider } from "./sider";
@@ -24,28 +24,22 @@ export const ThemedLayoutV2: React.FC<RefineThemedLayoutV2Props> = ({
       initialSiderCollapsed={initialSiderCollapsed}
       onSiderCollapsed={onSiderCollapsed}
     >
-      <Box sx={{ display: "flex" }}>
+      <Flex>
         <SiderToRender Title={Title} />
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "column",
-            flex: 1,
-          }}
-        >
+        <Flex direction="column" flex={1}>
           <HeaderToRender />
           <Box
             component="main"
-            sx={(theme) => ({
+            style={(theme) => ({
               padding: theme.spacing.sm,
             })}
           >
             {children}
           </Box>
           {Footer && <Footer />}
-        </Box>
+        </Flex>
         {OffLayoutArea && <OffLayoutArea />}
-      </Box>
+      </Flex>
     </ThemedLayoutContextProvider>
   );
 };

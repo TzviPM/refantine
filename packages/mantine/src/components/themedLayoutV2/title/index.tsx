@@ -40,18 +40,11 @@ export const ThemedTitleV2: React.FC<RefineLayoutThemedTitleProps> = ({
           ...wrapperStyles,
         }}
       >
-        <Text
-          lh={0}
-          fz="inherit"
-          color={theme.colorScheme === "dark" ? "brand.5" : "brand.6"}
-        >
+        <Text lh={0} fz="inherit" c="brand.6">
           {icon}
         </Text>
         {!collapsed && (
-          <Text
-            fz="inherit"
-            color={theme.colorScheme === "dark" ? "white" : "black"}
-          >
+          <Text fz="inherit" c="black">
             {text}
           </Text>
         )}

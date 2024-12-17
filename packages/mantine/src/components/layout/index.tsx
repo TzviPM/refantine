@@ -1,5 +1,5 @@
 import React from "react";
-import { Box } from "@mantine/core";
+import { Box, Flex, useMantineTheme } from "@mantine/core";
 
 import type { RefineLayoutLayoutProps } from "./types";
 import { Sider as DefaultSider } from "./sider";
@@ -20,34 +20,26 @@ export const Layout: React.FC<RefineLayoutLayoutProps> = ({
   const SiderToRender = Sider ?? DefaultSider;
   const HeaderToRender = Header ?? DefaultHeader;
 
+  const theme = useMantineTheme();
+
   return (
-    <Box sx={{ display: "flex" }}>
+    <Flex>
       <SiderToRender Title={Title} />
-      <Box
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          flex: 1,
-          overflow: "auto",
-        }}
-      >
+      <Flex dir="column" flex={1} style={{ overflow: "auto" }}>
         <HeaderToRender />
         <Box
           component="main"
-          sx={(theme) => ({
+          style={{
             padding: theme.spacing.sm,
-            backgroundColor:
-              theme.colorScheme === "dark"
-                ? theme.colors.dark[8]
-                : theme.colors.gray[0],
+            backgroundColor: theme.colors.gray[0],
             minHeight: "100vh",
-          })}
+          }}
         >
           {children}
         </Box>
         {Footer && <Footer />}
-      </Box>
+      </Flex>
       {OffLayoutArea && <OffLayoutArea />}
-    </Box>
+    </Flex>
   );
 };

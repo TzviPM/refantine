@@ -23,6 +23,7 @@ import {
   type BoxProps,
   type CardProps,
   useMantineTheme,
+  Flex,
 } from "@mantine/core";
 
 import { ThemedTitleV2 } from "@components";
@@ -82,7 +83,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   const { onSubmit, getInputProps } = form;
 
   const authProvider = useActiveAuthProvider();
-  const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
+  const { mutate: login, isPending: isLoading } = useLogin<LoginFormTypes>({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
   });
 
@@ -97,14 +98,14 @@ export const LoginPage: React.FC<LoginProps> = ({
     if (providers && providers.length > 0) {
       return (
         <>
-          <Stack spacing={8}>
+          <Stack gap={8}>
             {providers.map((provider) => {
               return (
                 <Button
                   key={provider.name}
                   variant="default"
                   fullWidth
-                  leftIcon={provider.icon}
+                  leftSection={provider.icon}
                   onClick={() =>
                     login({
                       ...mutationVariables,
@@ -132,10 +133,7 @@ export const LoginPage: React.FC<LoginProps> = ({
 
   const CardContent = (
     <Card style={cardStyles} {...(contentProps ?? {})}>
-      <Title
-        style={titleStyles}
-        color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
-      >
+      <Title style={titleStyles} c="brand.8">
         {translate("pages.login.title", "Sign in to your account")}
       </Title>
       <Space h="sm" />
@@ -165,14 +163,7 @@ export const LoginPage: React.FC<LoginProps> = ({
               placeholder="●●●●●●●●"
               {...getInputProps("password")}
             />
-            <Box
-              mt="md"
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
+            <Flex mt="md" align="center" justify="space-between">
               {rememberMe ?? (
                 <Checkbox
                   label={translate(
@@ -197,7 +188,7 @@ export const LoginPage: React.FC<LoginProps> = ({
                   )}
                 </Anchor>
               )}
-            </Box>
+            </Flex>
             <Button
               mt="md"
               fullWidth
@@ -211,7 +202,7 @@ export const LoginPage: React.FC<LoginProps> = ({
         </FormProvider>
       )}
       {registerLink ?? (
-        <Text mt="md" size="xs" align="center">
+        <Text mt="md" size="xs" ta="center">
           {translate("pages.login.buttons.noAccount", "Don’t have an account?")}{" "}
           <Anchor component={ActiveLink as any} to="/register" weight={700}>
             {translate("pages.login.signup", "Sign up")}

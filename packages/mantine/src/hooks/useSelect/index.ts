@@ -67,12 +67,11 @@ export const useSelect = <
       data: options,
       onSearchChange: onSearch,
       searchable: true,
-      filterDataOnExactSearchMatch: true,
       clearable: true,
     },
-    query,
+    query: query as QueryObserverResult<GetListResponse<TData>>,
     defaultValueQuery,
-    queryResult: query,
+    queryResult: query as QueryObserverResult<GetListResponse<TData>>,
     defaultValueQueryResult: defaultValueQuery,
   };
 };

@@ -17,7 +17,7 @@ import {
 export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
   return (
     <BackgroundImage
-      sx={{
+      style={{
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
@@ -34,18 +34,18 @@ export const ReadyPage: React.FC<RefineReadyPageProps> = () => {
         alt="Refine Logo"
       />
       <Space h={24} />
-      <Title align="center" sx={{ color: "white", fontSize: "3rem" }}>
+      <Title ta="center" style={{ color: "white", fontSize: "3rem" }}>
         Welcome on board
       </Title>
-      <Text size="xl" sx={{ color: "white" }} mt="md" align="center">
+      <Text size="xl" c="white" mt="md" ta="center">
         Your configuration is completed.
       </Text>
-      <Text size="lg" sx={{ color: "white" }} mt="md" align="center">
+      <Text size="lg" c="white" mt="md" ta="center">
         Now you can get started by adding your resources to the{" "}
         <Code>resources</Code> property of <Code>Refine</Code>.
       </Text>
       <Space h={48} />
-      <Group position="center">
+      <Group justify="center">
         <Anchor href="https://refine.dev" target="_blank" rel="noreferrer">
           <Button variant="default">Documentation</Button>
         </Anchor>

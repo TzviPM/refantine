@@ -1,10 +1,15 @@
 import React from "react";
-import { useExportButton } from "@refinedev/core";
+import { Action, useExportButton } from "@refinedev/core";
 import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Button } from "@mantine/core";
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Button,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconFileExport } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -31,14 +36,16 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
     <ActionIcon
       {...(variant
         ? {
-            variant: mapButtonVariantToActionIconVariant(variant),
+            variant: mapButtonVariantToActionIconVariant(
+              variant as ButtonVariant,
+            ),
           }
         : { variant: "default" })}
       loading={loading}
       aria-label={label}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}
-      {...commonProps}
+      {...(commonProps as ActionIconProps)}
     >
       <IconFileExport size={18} {...svgIconProps} />
     </ActionIcon>
@@ -46,7 +53,7 @@ export const ExportButton: React.FC<ExportButtonProps> = ({
     <Button
       variant="default"
       loading={loading}
-      leftIcon={<IconFileExport size={18} {...svgIconProps} />}
+      leftSection={<IconFileExport size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.ExportButton}
       className={RefineButtonClassNames.ExportButton}
       {...rest}

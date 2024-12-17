@@ -81,7 +81,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
   });
   const { getInputProps, onSubmit } = form;
 
-  const { mutate: forgotPassword, isLoading } =
+  const { mutate: forgotPassword, isPending: isLoading } =
     useForgotPassword<ForgotPasswordFormTypes>();
 
   const PageTitle =
@@ -93,10 +93,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
 
   const CardContent = (
     <Card style={cardStyles} {...(contentProps ?? {})}>
-      <Title
-        style={titleStyles}
-        color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
-      >
+      <Title style={titleStyles} c="brand.8">
         {translate("pages.forgotPassword.title", "Forgot your password?")}
       </Title>
       <Space h="lg" />
@@ -120,7 +117,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
           />
 
           {loginLink ?? (
-            <Group mt="md" position={loginLink ? "left" : "right"}>
+            <Group mt="md" justify={loginLink ? "left" : "right"}>
               <Text size="xs">
                 {translate(
                   "pages.forgotPassword.buttons.haveAccount",

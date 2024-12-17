@@ -57,11 +57,7 @@ export const Create: React.FC<CreateProps> = (props) => {
       : breadcrumbFromProps;
 
   const breadcrumbComponent =
-    typeof breadcrumb !== "undefined" ? (
-      <>{breadcrumb}</> ?? undefined
-    ) : (
-      <Breadcrumb />
-    );
+    typeof breadcrumb !== "undefined" ? <>{breadcrumb}</> : <Breadcrumb />;
 
   const saveButtonProps: SaveButtonProps = {
     ...(isLoading ? { disabled: true } : {}),
@@ -111,15 +107,15 @@ export const Create: React.FC<CreateProps> = (props) => {
   return (
     <Card p="md" {...wrapperProps}>
       <LoadingOverlay visible={loadingOverlayVisible} />
-      <Group position="apart" align="center" {...headerProps}>
-        <Stack spacing="xs">
+      <Group justify="apart" align="center" {...headerProps}>
+        <Stack gap="xs">
           {breadcrumbComponent}
-          <Group spacing="xs">
+          <Group gap="xs">
             {buttonBack}
             {title ?? (
               <Title
                 order={3}
-                transform="capitalize"
+                tt="capitalize"
                 className={RefinePageHeaderClassNames.Title}
               >
                 {translate(
@@ -136,14 +132,14 @@ export const Create: React.FC<CreateProps> = (props) => {
             )}
           </Group>
         </Stack>
-        <Group spacing="xs" {...headerButtonProps}>
+        <Group gap="xs" {...headerButtonProps}>
           {headerButtons}
         </Group>
       </Group>
       <Box pt="sm" {...contentProps}>
         {children}
       </Box>
-      <Group position="right" spacing="xs" mt="md" {...footerButtonProps}>
+      <Group justify="right" gap="xs" mt="md" {...footerButtonProps}>
         {footerButtons}
       </Group>
     </Card>

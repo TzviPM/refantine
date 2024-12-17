@@ -70,7 +70,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
   const { getInputProps, onSubmit } = form;
 
   const authProvider = useActiveAuthProvider();
-  const { mutate: updatePassword, isLoading } =
+  const { mutate: updatePassword, isPending: isLoading } =
     useUpdatePassword<UpdatePasswordFormTypes>({
       v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });
@@ -84,10 +84,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
 
   const CardContent = (
     <Card style={cardStyles} {...(contentProps ?? {})}>
-      <Title
-        style={titleStyles}
-        color={theme.colorScheme === "dark" ? "brand.5" : "brand.8"}
-      >
+      <Title style={titleStyles} c="brand.8">
         {translate("pages.updatePassword.title", "Set New Password")}
       </Title>
       <Space h="lg" />

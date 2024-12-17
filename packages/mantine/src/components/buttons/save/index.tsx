@@ -4,7 +4,12 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Button } from "@mantine/core";
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Button,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconDeviceFloppy } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -30,20 +35,22 @@ export const SaveButton: React.FC<SaveButtonProps> = ({
     <ActionIcon
       {...(variant
         ? {
-            variant: mapButtonVariantToActionIconVariant(variant),
+            variant: mapButtonVariantToActionIconVariant(
+              variant as ButtonVariant,
+            ),
           }
         : { variant: "filled", color: "primary" })}
       aria-label={label}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
-      {...commonProps}
+      {...(commonProps as ActionIconProps)}
     >
       <IconDeviceFloppy size={18} {...svgIconProps} />
     </ActionIcon>
   ) : (
     <Button
       variant="filled"
-      leftIcon={<IconDeviceFloppy size={18} {...svgIconProps} />}
+      leftSection={<IconDeviceFloppy size={18} {...svgIconProps} />}
       data-testid={RefineButtonTestIds.SaveButton}
       className={RefineButtonClassNames.SaveButton}
       {...rest}

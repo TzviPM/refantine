@@ -15,15 +15,13 @@ import {
   useWarnAboutChange,
 } from "@refinedev/core";
 import {
+  AppShell,
   ActionIcon,
   Box,
   Drawer,
-  Navbar,
   NavLink,
-  type NavLinkStylesNames,
-  type NavLinkStylesParams,
+  type NavLinkFactory,
   ScrollArea,
-  MediaQuery,
   Button,
   Tooltip,
   type TooltipProps,
@@ -74,7 +72,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
     return 200;
   };
 
-  const commonNavLinkStyles: Styles<NavLinkStylesNames, NavLinkStylesParams> = {
+  const commonNavLinkStyles: Styles<NavLinkFactory> = {
     root: {
       display: "flex",
       color: "white",
@@ -92,7 +90,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
       },
       justifyContent: collapsed && !opened ? "center" : "flex-start",
     },
-    icon: {
+    section: {
       marginRight: collapsed && !opened ? 0 : 12,
     },
     body: {
@@ -195,7 +193,7 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
       <NavLink
         key="logout"
         label={collapsed && !opened ? null : t("buttons.logout", "Logout")}
-        icon={<IconPower size={18} />}
+        leftSection={<IconPower size={18} />}
         onClick={handleLogout}
         styles={commonNavLinkStyles}
       />
@@ -222,94 +220,97 @@ export const Sider: React.FC<RefineLayoutSiderProps> = ({
 
   return (
     <>
-      <MediaQuery largerThan="md" styles={{ display: "none" }}>
-        <Box sx={{ position: "fixed", top: 64, left: 0, zIndex: 1199 }}>
-          <ActionIcon
-            color="white"
-            size={36}
-            sx={{
-              borderRadius: "0 6px 6px 0",
-              backgroundColor: "#2A132E",
-              color: "white",
-              "&:hover": {
-                backgroundColor: "#2A132E",
-              },
-            }}
-            onClick={() => setOpened((prev) => !prev)}
-          >
-            <IconMenu2 />
-          </ActionIcon>
-        </Box>
-      </MediaQuery>
-
-      <MediaQuery largerThan="md" styles={{ display: "none" }}>
-        <Drawer
-          opened={opened}
-          onClose={() => setOpened(false)}
-          size={200}
-          zIndex={1200}
-          withCloseButton={false}
-          styles={{
-            drawer: {
-              overflow: "hidden",
+      <Box
+        hiddenFrom="md"
+        style={{
+          position: "fixed",
+          top: 64,
+          left: 0,
+          zIndex: 1199,
+        }}
+      >
+        <ActionIcon
+          color="white"
+          size={36}
+          style={{
+            borderRadius: "0 6px 6px 0",
+            backgroundColor: "#2A132E",
+            color: "white",
+            "&:hover": {
               backgroundColor: "#2A132E",
             },
           }}
+          onClick={() => setOpened((prev) => !prev)}
         >
-          <Navbar.Section px="xs">
-            <RenderToTitle collapsed={false} />
-          </Navbar.Section>
-          <Navbar.Section grow component={ScrollArea} mx="-xs" px="xs">
-            {renderSider()}
-          </Navbar.Section>
-        </Drawer>
-      </MediaQuery>
+          <IconMenu2 />
+        </ActionIcon>
+      </Box>
 
-      <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-        <Box
-          sx={{
-            width: drawerWidth(),
-            transition: "width 200ms ease, min-width 200ms ease",
-            flexShrink: 0,
-          }}
-        />
-      </MediaQuery>
-
-      <MediaQuery smallerThan="md" styles={{ display: "none" }}>
-        <Navbar
-          width={{ base: drawerWidth() }}
-          sx={{
+      <Drawer
+        hiddenFrom="md"
+        opened={opened}
+        onClose={() => setOpened(false)}
+        size={200}
+        zIndex={1200}
+        withCloseButton={false}
+        styles={{
+          root: {
             overflow: "hidden",
-            transition: "width 200ms ease, min-width 200ms ease",
             backgroundColor: "#2A132E",
-            position: "fixed",
-            top: 0,
-            height: "100vh",
-          }}
-        >
-          <Navbar.Section px="xs">
-            <RenderToTitle collapsed={collapsed} />
-          </Navbar.Section>
-          <Navbar.Section grow mt="sm" component={ScrollArea} mx="-xs" px="xs">
-            {renderSider()}
-          </Navbar.Section>
-          <Navbar.Section>
-            <Button
-              sx={{
-                background: "rgba(0,0,0,.5)",
-                borderRadius: 0,
-                borderTop: "1px solid #ffffff1a",
-              }}
-              size="md"
-              variant="gradient"
-              fullWidth
-              onClick={() => setCollapsed((prev) => !prev)}
-            >
-              {collapsed ? <IconChevronRight /> : <IconChevronLeft />}
-            </Button>
-          </Navbar.Section>
-        </Navbar>
-      </MediaQuery>
+          },
+        }}
+      >
+        <AppShell.Section px="xs">
+          <RenderToTitle collapsed={false} />
+        </AppShell.Section>
+        <AppShell.Section grow component={ScrollArea} mx="-xs" px="xs">
+          {renderSider()}
+        </AppShell.Section>
+      </Drawer>
+
+      <Box
+        visibleFrom="md"
+        style={{
+          width: drawerWidth(),
+          transition: "width 200ms ease, min-width 200ms ease",
+          flexShrink: 0,
+        }}
+      />
+
+      <AppShell.Navbar
+        visibleFrom="md"
+        w={drawerWidth()}
+        style={{
+          overflow: "hidden",
+          transition: "width 200ms ease, min-width 200ms ease",
+          backgroundColor: "#2A132E",
+          position: "fixed",
+          top: 0,
+          height: "100vh",
+        }}
+      >
+        <AppShell.Section px="xs">
+          <RenderToTitle collapsed={collapsed} />
+        </AppShell.Section>
+        <AppShell.Section grow mt="sm" component={ScrollArea} mx="-xs" px="xs">
+          {renderSider()}
+        </AppShell.Section>
+        <AppShell.Section>
+          <Button
+            style={{
+              background: "rgba(0,0,0,.5)",
+              borderRadius: 0,
+              borderTop: "1px solid #ffffff1a",
+            }}
+            size="md"
+            variant="gradient"
+            fullWidth
+            onClick={() => setCollapsed((prev) => !prev)}
+          >
+            {collapsed ? <IconChevronRight /> : <IconChevronLeft />}
+          </Button>
+        </AppShell.Section>
+      </AppShell.Navbar>
     </>
   );
 };

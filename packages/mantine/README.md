@@ -46,7 +46,7 @@ Refine has connectors for 15+ backend services, including REST API, [GraphQL](ht
 To use Refine with Mantine, you need to install the following package `@refinedev/mantine` along with the Mantine packages:
 
 ```sh
-npm install @refinedev/mantine @refinedev/react-table @mantine/core@5 @mantine/hooks@5 @mantine/form@5 @mantine/notifications@5 @emotion/react @tabler/icons
+npm install @refinedev/mantine @refinedev/react-table @mantine/core@7 @mantine/hooks@7 @mantine/form@7 @mantine/notifications@7 @emotion/react @tabler/icons
 ```
 
 ## ⚡ Try Refine
@@ -236,7 +236,7 @@ export const ProductList = () => {
                   return (
                     <th key={header.id}>
                       {!header.isPlaceholder && (
-                        <Group spacing="xs" noWrap>
+                        <Group gap="xs" noWrap>
                           <Box>
                             {flexRender(
                               header.column.columnDef.header,

@@ -4,7 +4,13 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Anchor, Button } from "@mantine/core";
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Anchor,
+  Button,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconSquarePlus } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -67,12 +73,14 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
           aria-label={label}
           {...(variant
             ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
+                variant: mapButtonVariantToActionIconVariant(
+                  variant as ButtonVariant,
+                ),
               }
             : { variant: "default" })}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}
-          {...commonProps}
+          {...(commonProps as ActionIconProps)}
         >
           <IconSquarePlus size={18} {...svgIconProps} />
         </ActionIcon>
@@ -80,7 +88,7 @@ export const CloneButton: React.FC<CloneButtonProps> = ({
         <Button
           disabled={isDisabled}
           variant="default"
-          leftIcon={<IconSquarePlus size={18} {...svgIconProps} />}
+          leftSection={<IconSquarePlus size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.CloneButton}
           className={RefineButtonClassNames.CloneButton}

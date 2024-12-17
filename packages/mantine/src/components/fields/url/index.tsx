@@ -1,4 +1,4 @@
-import React from "react";
+import React, { type PropsWithChildren } from "react";
 import { Anchor } from "@mantine/core";
 
 import type { UrlFieldProps } from "../types";
@@ -10,7 +10,7 @@ import type { UrlFieldProps } from "../types";
  *
  * @see {@link https://refine.dev/docs/api-reference/mantine/components/fields/url} for more details.
  */
-export const UrlField: React.FC<UrlFieldProps> = ({
+export const UrlField: React.FC<PropsWithChildren<UrlFieldProps>> = ({
   children,
   value,
   title,

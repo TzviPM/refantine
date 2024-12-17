@@ -93,10 +93,5 @@
     "node": ">=18",
     "pnpm": ">=9"
   },
-  "pnpm": {
-    "patchedDependencies": {
-      "@changesets/git@3.0.0": "patches/@changesets__git@3.0.0.patch"
-    }
-  },
   "nx": {}
 }

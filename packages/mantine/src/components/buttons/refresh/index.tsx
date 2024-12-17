@@ -4,7 +4,12 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Button } from "@mantine/core";
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Button,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconRefresh } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -50,17 +55,19 @@ export const RefreshButton: React.FC<RefreshButtonProps> = ({
       className={RefineButtonClassNames.RefreshButton}
       {...(variant
         ? {
-            variant: mapButtonVariantToActionIconVariant(variant),
+            variant: mapButtonVariantToActionIconVariant(
+              variant as ButtonVariant,
+            ),
           }
         : { variant: "default" })}
-      {...commonProps}
+      {...(commonProps as ActionIconProps)}
     >
       <IconRefresh size={18} {...svgIconProps} />
     </ActionIcon>
   ) : (
     <Button
       variant="default"
-      leftIcon={<IconRefresh size={18} {...svgIconProps} />}
+      leftSection={<IconRefresh size={18} {...svgIconProps} />}
       loading={loading}
       onClick={onClick ? onClick : onRefresh}
       data-testid={RefineButtonTestIds.RefreshButton}

@@ -16,6 +16,7 @@ import {
   ActionIcon,
   Button,
   Space,
+  Flex,
 } from "@mantine/core";
 import { IconInfoCircle } from "@tabler/icons-react";
 
@@ -44,37 +45,29 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
   }, [resource, action]);
 
   return (
-    <Box
-      sx={{
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "center",
-        alignItems: "center",
-        textAlign: "center",
+    <Flex
+      direction="column"
+      justify="center"
+      align="center"
+      ta="center"
+      style={{
         boxSizing: "border-box",
         minHeight: "calc(100vh - 150px)",
       }}
     >
       <Title
-        sx={(theme) => ({
+        fz={{ base: 220, sm: 120 }}
+        style={(theme) => ({
           textAlign: "center",
           fontWeight: 900,
-          fontSize: 220,
           lineHeight: 1,
-          color:
-            theme.colorScheme === "dark"
-              ? theme.colors.dark[4]
-              : theme.colors.gray[2],
-
-          [theme.fn.smallerThan("sm")]: {
-            fontSize: 120,
-          },
+          color: theme.colors.gray[2],
         })}
       >
         404
       </Title>
-      <Group spacing={4} align="center" sx={{ justifyContent: "center" }}>
-        <Text color="dimmed" size="lg" align="center" sx={{ maxWidth: 500 }}>
+      <Group gap={4} align="center" justify="center">
+        <Text c="dimmed" size="lg" ta="center" style={{ maxWidth: 500 }}>
           {translate(
             "pages.error.404",
             "Sorry, the page you visited does not exist.",
@@ -102,6 +95,6 @@ export const ErrorComponent: React.FC<RefineErrorPageProps> = () => {
       >
         {translate("pages.error.backHome", "Back Home")}
       </Button>
-    </Box>
+    </Flex>
   );
 };

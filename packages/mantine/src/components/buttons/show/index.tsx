@@ -4,7 +4,13 @@ import {
   RefineButtonClassNames,
   RefineButtonTestIds,
 } from "@refinedev/ui-types";
-import { ActionIcon, Anchor, Button } from "@mantine/core";
+import {
+  ActionIcon,
+  type ActionIconProps,
+  Anchor,
+  Button,
+  type ButtonVariant,
+} from "@mantine/core";
 import { IconEye } from "@tabler/icons-react";
 
 import { mapButtonVariantToActionIconVariant } from "@definitions/button";
@@ -63,14 +69,16 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         <ActionIcon
           {...(variant
             ? {
-                variant: mapButtonVariantToActionIconVariant(variant),
+                variant: mapButtonVariantToActionIconVariant(
+                  variant as ButtonVariant,
+                ),
               }
             : { variant: "default" })}
           disabled={isDisabled}
           title={title}
           data-testid={RefineButtonTestIds.ShowButton}
           className={RefineButtonClassNames.ShowButton}
-          {...commonProps}
+          {...(commonProps as ActionIconProps)}
         >
           <IconEye size={18} {...svgIconProps} />
         </ActionIcon>
@@ -78,7 +86,7 @@ export const ShowButton: React.FC<ShowButtonProps> = ({
         <Button
           variant="default"
           disabled={isDisabled}
-          leftIcon={<IconEye size={18} {...svgIconProps} />}
+          leftSection={<IconEye size={18} {...svgIconProps} />}
           title={title}
           data-testid={RefineButtonTestIds.ShowButton}
           className={RefineButtonClassNames.ShowButton}
