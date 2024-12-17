@@ -16,7 +16,7 @@ export default function ServerSideValidationChakraUi() {
         "@tanstack/react-table": "^8.2.6",
         "@refinedev/react-hook-form": "^4.8.12",
         "@chakra-ui/react": "^2.5.1",
-        "react-dom": "^18.0.0",
+        "react-dom": "^18.3.1",
         "react-router": "^7.0.2",
         "react-hook-form": "^7.43.5",
       }}

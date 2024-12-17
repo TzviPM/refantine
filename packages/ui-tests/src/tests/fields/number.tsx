@@ -14,7 +14,7 @@ export const fieldNumberTests = (
         currency: "EUR",
         maximumFractionDigits: 1,
         minimumFractionDigits: 1,
-      };
+      } as const;
       const locale = "de-DE";
 
       const { getByText } = render(

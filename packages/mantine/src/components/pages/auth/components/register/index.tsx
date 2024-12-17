@@ -86,10 +86,9 @@ export const RegisterPage: React.FC<RegisterProps> = ({
   const { onSubmit, getInputProps } = form;
 
   const authProvider = useActiveAuthProvider();
-  const { mutate: register, isPending: isLoading } =
-    useRegister<RegisterFormTypes>({
-      v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
-    });
+  const { mutate: register, isLoading } = useRegister<RegisterFormTypes>({
+    v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
+  });
 
   const PageTitle =
     title === false ? null : (

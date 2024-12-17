@@ -70,7 +70,7 @@ export const UpdatePasswordPage: React.FC<UpdatePassworProps> = ({
   const { getInputProps, onSubmit } = form;
 
   const authProvider = useActiveAuthProvider();
-  const { mutate: updatePassword, isPending: isLoading } =
+  const { mutate: updatePassword, isLoading } =
     useUpdatePassword<UpdatePasswordFormTypes>({
       v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
     });

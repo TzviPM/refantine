@@ -99,8 +99,8 @@ If we open the app in our code editor, we can see that **Refine**'s optional pac
     "antd": "^5.0.5",
     "axios": "^1.6.2",
     // highlight-end
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
     "react-router-dom": "^6.8.1",
     "react-scripts": "^5.0.0"
   },

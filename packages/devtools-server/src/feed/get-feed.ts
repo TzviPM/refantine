@@ -22,7 +22,7 @@ const contentToHtml = (content: string) => {
 
   const html = marked(content, {
     renderer,
-  });
+  }) as string;
 
   return sanitizeHtml(html, {
     allowedTags: sanitizeHtml.defaults.allowedTags.concat(["img"]),

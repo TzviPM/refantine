@@ -81,7 +81,7 @@ export const ForgotPasswordPage: React.FC<ResetPassworProps> = ({
   });
   const { getInputProps, onSubmit } = form;
 
-  const { mutate: forgotPassword, isPending: isLoading } =
+  const { mutate: forgotPassword, isLoading } =
     useForgotPassword<ForgotPasswordFormTypes>();
 
   const PageTitle =

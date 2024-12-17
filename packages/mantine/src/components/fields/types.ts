@@ -18,7 +18,7 @@ import type {
 } from "@refinedev/ui-types";
 import type { IconProps } from "@tabler/icons-react";
 import type { ConfigType } from "dayjs";
-import type { Options } from "react-markdown";
+import type { PluginOptions } from "react-markdown";
 
 export type BooleanFieldProps = RefineFieldBooleanProps<
   unknown,
@@ -34,7 +34,7 @@ export type FileFieldProps = RefineFieldFileProps<TextProps>;
 
 export type MarkdownFieldProps = RefineFieldMarkdownProps<
   string | undefined,
-  Partial<Options>
+  Partial<PluginOptions>
 >;
 
 export type NumberFieldProps = RefineFieldNumberProps<ReactNode, TextProps>;

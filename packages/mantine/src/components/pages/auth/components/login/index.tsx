@@ -83,7 +83,7 @@ export const LoginPage: React.FC<LoginProps> = ({
   const { onSubmit, getInputProps } = form;
 
   const authProvider = useActiveAuthProvider();
-  const { mutate: login, isPending: isLoading } = useLogin<LoginFormTypes>({
+  const { mutate: login, isLoading } = useLogin<LoginFormTypes>({
     v3LegacyAuthProviderCompatible: Boolean(authProvider?.isLegacy),
   });
 

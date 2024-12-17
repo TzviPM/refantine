@@ -3,7 +3,7 @@ import ReactMarkdown from "react-markdown";
 import gfm from "remark-gfm";
 
 import type { MarkdownFieldProps } from "../types";
-import type { PluggableList } from "react-markdown/lib";
+import type { PluggableList } from "react-markdown";
 
 /**
  * This field lets you display markdown content. It supports {@link https://github.github.com/gfm/ GitHub Flavored Markdown}.
